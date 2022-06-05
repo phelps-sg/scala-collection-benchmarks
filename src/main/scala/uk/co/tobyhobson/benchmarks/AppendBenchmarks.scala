@@ -29,7 +29,7 @@ import org.openjdk.jmh.annotations._
 import scala.collection.mutable
 import uk.co.tobyhobson.fixtures.AppendOps
 
-import scala.collection.immutable.{Queue, Stack}
+import scala.collection.immutable.Queue
 
 @State(Scope.Thread)
 @BenchmarkMode(Array(Mode.Throughput))
@@ -101,20 +101,6 @@ class AppendBenchmarks {
     }
 
     @Benchmark
-    def appendToStack(): Stack[Int] = {
-        val actual = classUnderTest.appendToStack(Elements)
-        assert(actual.toList == Elements)
-        actual
-    }
-
-    @Benchmark
-    def prependToStack(): Stack[Int] = {
-        val actual = classUnderTest.prependToStack(Elements)
-        assert(actual.toList == Elements)
-        actual
-    }
-
-    @Benchmark
     def appendToQueue(): Queue[Int] = {
         val actual = classUnderTest.appendToQueue(Elements)
         assert(actual.toList == Elements)
@@ -124,20 +110,6 @@ class AppendBenchmarks {
     @Benchmark
     def prependToQueue(): Queue[Int] = {
         val actual = classUnderTest.prependToQueue(Elements)
-        assert(actual.toList == Elements)
-        actual
-    }
-
-    @Benchmark
-    def appendToMutableList(): mutable.MutableList[Int] = {
-        val actual = classUnderTest.appendToMutableList(Elements)
-        assert(actual.toList == Elements)
-        actual
-    }
-
-    @Benchmark
-    def prependToMutableList(): mutable.MutableList[Int] = {
-        val actual = classUnderTest.prependToMutableList(Elements)
         assert(actual.toList == Elements)
         actual
     }

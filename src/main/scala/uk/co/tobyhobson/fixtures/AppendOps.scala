@@ -1,6 +1,6 @@
 package uk.co.tobyhobson.fixtures
 
-import scala.collection.immutable.{Queue, Stack}
+import scala.collection.immutable.Queue
 import scala.collection.mutable
 
 /**
@@ -81,27 +81,6 @@ class AppendOps {
     }
 
     /**
-      * Uses foldLeft to append to the immutable stack
-      *
-      * @param elements a List of elements that we will copy to the Stack
-      * @return
-      */
-    def appendToStack(elements: List[Int]): Stack[Int] = {
-        (Stack[Int]() /: elements) (_ :+ _)
-    }
-
-    /**
-      * This SHOULD be quicker than appending but lets see...
-      *
-      * @param elements a List of elements that we will copy to the Vector
-      * @return
-      */
-    def prependToStack(elements: List[Int]): Stack[Int] = {
-        val prependedElements = (Stack[Int]() /: elements) ((stack, element) => stack.push(element))
-        prependedElements.reverse
-    }
-
-    /**
       * This SHOULD be quicker than prepending but lets see...
       *
       * @param elements a List of elements that we will copy to the Queue
@@ -121,32 +100,6 @@ class AppendOps {
     def prependToQueue(elements: List[Int]): Queue[Int] = {
         val prependedElements = (Queue[Int]() /: elements) ((queue, element) => element +: queue)
         prependedElements.reverse
-    }
-
-    /**
-      * The big question. Is this quicker than appending to an immutable List?
-      *
-      * @param elements a List of elements that we will copy to the List
-      * @return
-      */
-    def appendToMutableList(elements: List[Int]): mutable.MutableList[Int] = {
-        val mutableList = mutable.MutableList[Int]()
-        for (element <- elements)
-            mutableList += element
-        mutableList
-    }
-
-    /**
-      * Is this quicker than prepending to an immutable List?
-      *
-      * @param elements a List of elements that we will copy to the List
-      * @return
-      */
-    def prependToMutableList(elements: List[Int]): mutable.MutableList[Int] = {
-        val mutableList = mutable.MutableList[Int]()
-        for (element <- elements)
-            element +=: mutableList
-        mutableList.reverse
     }
 
     /**
@@ -239,7 +192,7 @@ class AppendOps {
       * @return
       */
     def appendToArrayBuilder(elements: List[Int]): mutable.ArrayBuilder[Int] = {
-        val builder: mutable.ArrayBuilder[Int] = mutable.ArrayBuilder.make()
+        val builder: mutable.ArrayBuilder[Int] = mutable.ArrayBuilder.make
         for (element <- elements)
             builder += element
         builder

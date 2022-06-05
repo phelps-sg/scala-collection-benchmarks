@@ -27,7 +27,7 @@ package uk.co.tobyhobson.benchmarks
 import org.openjdk.jmh.annotations._
 import uk.co.tobyhobson.fixtures.RandomAccessOps
 
-import scala.collection.immutable.{Queue, Stack}
+import scala.collection.immutable.Queue
 import scala.collection.mutable
 
 @State(Scope.Thread)
@@ -41,28 +41,20 @@ class RandomAccessBenchmarks {
     private val classUnderTest = new RandomAccessOps()
 
     private val ImmutableList: List[Int] = (0 until ListSize).toList
-    private val MutableList = mutable.MutableList(ImmutableList: _*)
     private val ImmutableVector = Vector(ImmutableList: _*)
-    private val ImmutableStack = Stack(ImmutableList: _*)
     private val ImmutableQueue = Queue(ImmutableList: _*)
     private val MutableQueue = mutable.Queue(ImmutableList: _*)
     private val MutableListBuffer = mutable.ListBuffer(ImmutableList: _*)
     private val MutableArrayBuffer = mutable.ArrayBuffer(ImmutableList: _*)
-    private val MutableArray = Array(ImmutableList: _*)
+//    private val MutableArray = Array(ImmutableList: _*)
 
     val Expected: Int = ImmutableList.sum
-
-    @Benchmark
-    def accessMutableList(): Int = classUnderTest.get(MutableList)
 
     @Benchmark
     def accessList(): Int = classUnderTest.get(ImmutableList)
 
     @Benchmark
     def accessVector(): Int = classUnderTest.get(ImmutableVector)
-
-    @Benchmark
-    def accessStack(): Int = classUnderTest.get(ImmutableStack)
 
     @Benchmark
     def accessQueue(): Int = classUnderTest.get(ImmutableQueue)
@@ -76,7 +68,7 @@ class RandomAccessBenchmarks {
     @Benchmark
     def accessArrayBuffer(): Int = classUnderTest.get(MutableArrayBuffer)
 
-    @Benchmark
-    def accessArray(): Int = classUnderTest.get(MutableArray)
+//    @Benchmark
+//    def accessArray(): Int = classUnderTest.get(MutableArray)
 
 }

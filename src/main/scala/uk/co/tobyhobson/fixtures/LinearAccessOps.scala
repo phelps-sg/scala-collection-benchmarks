@@ -1,6 +1,6 @@
 package uk.co.tobyhobson.fixtures
 
-import scala.collection.immutable.{Queue, Stack}
+import scala.collection.immutable.Queue
 import scala.collection.{GenTraversableOnce, mutable}
 
 /**

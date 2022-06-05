@@ -1,4 +1,7 @@
+
 val ProfileQA  = config("ea") extend Runtime
+
+scalaVersion := "2.13.8"
 
 name := """scala-collection-benchmarks"""
 

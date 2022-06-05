@@ -27,7 +27,7 @@ package uk.co.tobyhobson.benchmarks
 import org.openjdk.jmh.annotations._
 import uk.co.tobyhobson.fixtures.LinearAccessOps
 
-import scala.collection.immutable.{Queue, Stack}
+import scala.collection.immutable.Queue
 import scala.collection.mutable
 
 @State(Scope.Thread)
@@ -41,14 +41,12 @@ class LinearAccessBenchmarks {
     private val classUnderTest = new LinearAccessOps()
 
     private val ImmutableList: List[Int] = (0 until ListSize).toList
-    private val MutableList = mutable.MutableList(ImmutableList: _*)
     private val ImmutableVector = Vector(ImmutableList: _*)
-    private val ImmutableStack = Stack(ImmutableList: _*)
     private val ImmutableQueue = Queue(ImmutableList: _*)
     private val MutableQueue = mutable.Queue(ImmutableList: _*)
     private val MutableListBuffer = mutable.ListBuffer(ImmutableList: _*)
     private val MutableArrayBuilder = {
-        val builder: mutable.ArrayBuilder[Int] = mutable.ArrayBuilder.make()
+        val builder: mutable.ArrayBuilder[Int] = mutable.ArrayBuilder.make
         for (element <- ImmutableList)
             builder += element
         builder
@@ -72,22 +70,8 @@ class LinearAccessBenchmarks {
     }
 
     @Benchmark
-    def iterateStack(): Int = {
-        val actual = classUnderTest.sum(ImmutableStack)
-        assert(actual == Expected)
-        actual
-    }
-
-    @Benchmark
     def iterateQueue(): Int = {
         val actual = classUnderTest.sum(ImmutableQueue)
-        assert(actual == Expected)
-        actual
-    }
-
-    @Benchmark
-    def iterateMutableList(): Int = {
-        val actual = classUnderTest.sum(MutableList)
         assert(actual == Expected)
         actual
     }
