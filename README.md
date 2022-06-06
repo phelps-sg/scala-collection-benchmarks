@@ -8,9 +8,9 @@ Setup
 -----
 
 1. Clone this repo
-2. Navigate to the directory and run "./activator" (or "sbt" if you have sbt) to enter the console
-3. Type "clean"
-4. Type "jmh:run"
+2. Navigate to the directory and run `./activator` (or `sbt` if you have sbt) to enter the console
+3. Type `clean`
+4. Type `jmh:run`
 
 Code structure
 ----------------------------
