@@ -52,6 +52,7 @@ magic is easy to spot though - If your profiling results look amazing the JIT ha
 Results with Scala 2.13
 -----------------------
 
+~~~
 [info] Benchmark                                    Mode  Cnt          Score        Error  Units
 [info] AppendBenchmarks.appendToArray              thrpt   50      60748.454 ±    191.629  ops/s
 [info] AppendBenchmarks.appendToArrayBuffer        thrpt   50     179135.326 ±   3195.279  ops/s
@@ -83,3 +84,4 @@ Results with Scala 2.13
 [info] RandomAccessBenchmarks.accessQueue          thrpt   50     513446.301 ±    402.624  ops/s
 [info] RandomAccessBenchmarks.accessVector         thrpt   50   95962852.554 ± 166793.396  ops/s
 [success] Total time: 29069 s (08:04:29), completed 5 Jun 2022, 18:32:16
+~~~
